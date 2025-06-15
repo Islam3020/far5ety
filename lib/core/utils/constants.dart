@@ -1,0 +1,1 @@
+const String adminEmail = 'islamali@gmail.com';
