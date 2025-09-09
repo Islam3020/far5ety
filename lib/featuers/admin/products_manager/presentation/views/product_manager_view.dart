@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -78,6 +80,52 @@ class _ProductManagerViewState extends State<ProductManagerView> {
               child: Column(
                 children: [
                   Gap(50.h),
+                   Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          CircleAvatar(
+                            radius: 50,
+                            // backgroundColor: AppColors.lightBg,
+                            child: CircleAvatar(
+                              radius: 60,
+                              backgroundImage: (context.watch<ProductManagerCubit>().imagePath != null)
+                                  ? FileImage(File(context.watch<ProductManagerCubit>().imagePath!))
+                                  : const AssetImage('assets/images/chicken.jpg'),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              await context.read<ProductManagerCubit>().pickImage(); // يفتح الجاليري
+                              if (context.read<ProductManagerCubit>().file != null) {
+                                final url = await context.read<ProductManagerCubit>().uploadImageToCloudinary(
+                                    context.read<ProductManagerCubit>().file!); // رفع للصورة
+                                if (url != null) {
+                                  setState(() {
+                                    context.read<ProductManagerCubit>().image = url; // خزن لينك الصورة
+                                  });
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('حدث خطأ أثناء رفع الصورة'),
+                                    ),
+                                  );
+                                }
+                              }
+                            },
+                            child: CircleAvatar(
+                              radius: 15,
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              child: const Icon(
+                                Icons.camera_alt_rounded,
+                                size: 20,
+                                // color: AppColors.color1,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Gap(20.h),
                   TextFormField(
                     controller: productNameController,
                     decoration: InputDecoration(
@@ -121,6 +169,7 @@ class _ProductManagerViewState extends State<ProductManagerView> {
                             productName: productNameController.text,
                             productType: productTypeController.text,
                             productPrice: productPriceController.text,
+                            productImage: context.read<ProductManagerCubit>().image!,
                           );
                         }
                       }),

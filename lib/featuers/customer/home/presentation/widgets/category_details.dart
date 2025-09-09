@@ -96,6 +96,16 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(12.r),
+                            child: Image.network(
+                              item['productImage'] ?? '',
+                              height: 120.h,
+                              width: 120.w,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          SizedBox(height: 8.h),
                           
                           Text(
                             item['productName'] ?? '',
