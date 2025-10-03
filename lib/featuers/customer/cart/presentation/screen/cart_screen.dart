@@ -115,7 +115,7 @@ class _CartScreenState extends State<CartScreen> {
                           style: getTitleStyle(color: AppColors.black),
                         ),
                         CustomButton(
-                          width: 120.w,
+                          width: 130.w,
                           text: 'إتمام الطلب',
                           onPressed: () {
                             push(

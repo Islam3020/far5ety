@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -30,15 +31,18 @@ class CartCubit extends Cubit<CartState> {
           .collection('cart');
 
       // التحقق إذا كان المنتج موجود بالفعل في السلة
-      final existingItem =
-          await cartRef.where('productId', isEqualTo: productId).limit(1).get();
+      // final existingItem =
+      //     await cartRef.where('productId', isEqualTo: productId).limit(1).get();
 
-      if (existingItem.docs.isNotEmpty) {
-        // إذا المنتج موجود، نزيد الكمية فقط
-        await cartRef
-            .doc(existingItem.docs.first.id)
-            .update({'quantity': FieldValue.increment(quantity)});
-      } else {
+      // if (existingItem.docs.isNotEmpty) {
+      //   // إذا المنتج موجود، نزيد الكمية فقط
+      //   await cartRef
+      //       .doc(existingItem.docs.first.id)
+      //       .update({'quantity': FieldValue.increment(quantity)});
+      // } else {
+        //
+        log(
+          'Adding to cart: $productId, $productName, $weight, $price, $quantity');
         // إذا المنتج غير موجود، نضيفه جديد
         await cartRef.add({
           'productId': productId,
@@ -48,7 +52,7 @@ class CartCubit extends Cubit<CartState> {
           'quantity': quantity,
           'addedAt': FieldValue.serverTimestamp(),
         });
-      }
+      // }
       emit(AddToCartSuccess());
     } catch (e) {
       emit(AddToCartError(e.toString()));

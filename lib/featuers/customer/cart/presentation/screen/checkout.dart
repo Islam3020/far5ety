@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:toury/core/functions/navigation.dart';
+import 'package:toury/core/utils/colors.dart';
 import 'package:toury/core/utils/text_style.dart';
 import 'package:toury/core/widgets/custom_button.dart';
 import 'package:toury/featuers/customer/cart/data/model/cart_model.dart';
@@ -138,7 +139,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     Container(
                       padding: EdgeInsets.all(12.w),
                       decoration: BoxDecoration(
-                        color: Colors.grey[200],
+                        color: AppColors.accentColor,
                         borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: Column(

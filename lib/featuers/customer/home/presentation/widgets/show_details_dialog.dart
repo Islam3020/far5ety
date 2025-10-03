@@ -98,17 +98,17 @@ void showDetailsDialog({
         .collection('cart');
 
     // التحقق إذا كان المنتج موجود بالفعل في السلة
-    final existingItem = await cartRef
-        .where('productId', isEqualTo: productId)
-        .limit(1)
-        .get();
+    // final existingItem = await cartRef
+    //     .where('productId', isEqualTo: productId)
+    //     .limit(1)
+    //     .get();
 
-    if (existingItem.docs.isNotEmpty) {
-      // إذا المنتج موجود، نزيد الكمية فقط
-      await cartRef
-          .doc(existingItem.docs.first.id)
-          .update({'quantity': FieldValue.increment(quantity)});
-    } else {
+    // if (existingItem.docs.isNotEmpty) {
+    //   // إذا المنتج موجود، نزيد الكمية فقط
+    //   await cartRef
+    //       .doc(existingItem.docs.first.id)
+    //       .update({'quantity': FieldValue.increment(quantity)});
+    // } else {
       // إذا المنتج غير موجود، نضيفه جديد
       await cartRef.add({
         'productId': productId,
@@ -118,7 +118,7 @@ void showDetailsDialog({
         'quantity': quantity,
         'addedAt': FieldValue.serverTimestamp(),
       });
-    }
+   // }
   } catch (e) {
     debugPrint('Error adding to cart: $e');
     throw Exception('Failed to add item to cart');

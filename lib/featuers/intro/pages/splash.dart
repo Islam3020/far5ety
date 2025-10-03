@@ -63,12 +63,12 @@ Future<void> navigateAfterSplash() async {
             ),
             SizedBox(height: 20.h), 
             Text(
-              "طيور الزهراء",
+              "طيور المدينة",
               style: getTitleStyle(), 
             ),
             SizedBox(height: 10.h), 
             Text(
-              "أهلاً بيك في طيور الزهراء 🐔",
+              "أهلاً بيك في طيور المدينة 🐔",
               style: getSmallStyle(),
             ),
           ],

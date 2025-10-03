@@ -8,9 +8,11 @@ import 'package:toury/featuers/customer/home/presentation/widgets/show_details_d
 
 
 class CategoryDetailsScreen extends StatefulWidget {
-  final String categoryName;
+  //final String categoryName;
 
-  const CategoryDetailsScreen({super.key, required this.categoryName});
+  const CategoryDetailsScreen({super.key
+  //, required this.categoryName
+  });
 
   @override
   State<CategoryDetailsScreen> createState() => _CategoryDetailsScreenState();
@@ -28,15 +30,19 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
     final userId = user?.uid;
     super.initState();
     AppLocalStorage.cacheData(key: AppLocalStorage.userToken, value: userId);
-    fetchProducts(widget.categoryName);
+    fetchProducts(
+     // widget.categoryName
+      );
   }
 
-  Future<void> fetchProducts(String categoryName) async {
+  Future<void> fetchProducts(
+   // String categoryName
+    ) async {
     try {
-      // استبدل هذا الجزء بكود جلب البيانات من قاعدة البيانات الخاصة بك
+     
       final snapshot = await FirebaseFirestore.instance
           .collection('products')
-          .where('productType', isEqualTo: categoryName)
+         // .where('productType', isEqualTo: categoryName)
           .get();
 
       setState(() {
@@ -55,10 +61,7 @@ class _CategoryDetailsScreenState extends State<CategoryDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('تفاصيل ${widget.categoryName}'),
-        centerTitle: true,
-      ),
+     
       body: Padding(
         padding: EdgeInsets.all(16.0.w),
         child: isLoading

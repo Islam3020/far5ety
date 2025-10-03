@@ -84,7 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   final category = categories[index];
                   return GestureDetector(
                     onTap: () {
-                     push(context, CategoryDetailsScreen(categoryName:category ,));
+                     push(context, const CategoryDetailsScreen(
+                     // categoryName:category ,
+                      ));
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),

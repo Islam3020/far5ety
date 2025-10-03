@@ -4,7 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:toury/core/utils/colors.dart';
 import 'package:toury/core/utils/text_style.dart';
 import 'package:toury/featuers/customer/cart/presentation/screen/cart_screen.dart';
-import 'package:toury/featuers/customer/home/presentation/screen/home_screen.dart';
+import 'package:toury/featuers/customer/home/presentation/widgets/category_details.dart';
 import 'package:toury/featuers/customer/profile/presentation/screen/profile_screen.dart';
 
 
@@ -19,7 +19,7 @@ class _CustomerNavBarState extends State<CustomerNavBar> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = const [
-    HomeScreen(),
+    CategoryDetailsScreen(),
     CartScreen(),
     ProfileScreen(),
     // CartScreen(),
